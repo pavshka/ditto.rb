@@ -4,12 +4,14 @@ require 'spec_helper'
 
 describe 'request to admin endpoints', type: :request do
   describe 'GET /endpoints' do
-    let(:expected_response) { { hello: 'from admin' }.to_json }
+    before { 5.times { create_any_endpoint } }
 
-    it 'returns hello from admin' do
+    it 'returns all the existing endpoints' do
       get '/endpoints'
 
-      expect(last_response.body).to eq(expected_response)
+      expect(
+        JSON.parse(last_response.body)['data'].count
+      ).to eq(5)
     end
   end
 end

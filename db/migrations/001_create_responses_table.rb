@@ -3,7 +3,7 @@ Sequel.migration do
     create_table(:responses) do
       primary_key :id
       Integer :code, null: false
-      JSON :headers
+      String :headers
       String :body
     end
   end

@@ -2,4 +2,4 @@
 
 require_relative 'ditto'
 
-run Ditto::Router.new
+run Ditto::Apps::Router.new

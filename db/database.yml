@@ -1,0 +1,19 @@
+# database.yml
+
+development:
+  adapter: sqlite
+  database: db/development.sqlite3
+  pool_timeout: 5 # Maximum time to wait for a connection (in seconds)
+  max_connections: 5 # Maximum number of connections in the pool
+
+test:
+  adapter: sqlite
+  database: db/test.sqlite3
+  pool_timeout: 5
+  max_connections: 5
+
+production:
+  adapter: sqlite
+  database: db/production.sqlite3
+  pool_timeout: 10
+  max_connections: 20

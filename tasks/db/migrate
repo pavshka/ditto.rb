@@ -1,20 +1,12 @@
 #!/usr/bin/env ruby
 
-# Load Bundler and load all the gems in your Gemfile
-require 'bundler/setup'
-
-# Load the Sequel library
+# This gems are required by the Ditto::DB::Config class
+require 'yaml'
 require 'sequel'
 
-# Note that bin/sequel does not directly support ActiveRecord YAML configuration files, as they use different names for some options.
-# Your database configuration goes here
-DB = Sequel.sqlite('db/development.sqlite3')
-
-# If you have a database configuration file (e.g., database.yml),
-# you can load it here, or set up the database connection as needed.
+require_relative '../../db/config'
+DB = Ditto::DB::Config.new.connection
 
 # Set up your Sequel migration directory (modify as needed)
 Sequel.extension :migration
 Sequel::Migrator.run(DB, 'db/migrations')
-
-# The rest of your Sequel CLI commands can go here

@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
-require 'rack'
-
-require_relative 'admin'
-require_relative 'main'
-
 module Ditto
   module Apps
     class Router
       def call(env)
         if admin_request?(env)
-          run Admin.new
+          Admin.new.call(env)
         else
-          run Main.new
+          Main.new.call(env)
         end
       end
 

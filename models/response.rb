@@ -6,6 +6,10 @@ module Ditto
       one_to_one :endpoint
 
       def validate; end
+
+      def to_rack_response
+        [code, JSON.parse(headers), [body]]
+      end
     end
   end
 end
