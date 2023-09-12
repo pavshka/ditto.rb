@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'ditto/router'
+require_relative 'ditto'
 
 run Ditto::Router.new
