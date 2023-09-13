@@ -2,16 +2,14 @@
 
 require 'spec_helper'
 
-describe 'request to admin endpoints', type: :request do
-  describe 'GET /endpoints' do
-    before { 5.times { create_any_endpoint } }
+describe 'GET /endpoints', type: :request do
+  before { 5.times { Ditto::Factory.create_random_endpoint } }
 
-    it 'returns all the existing endpoints' do
-      get '/endpoints'
+  it 'returns all the existing endpoints' do
+    get '/endpoints'
 
-      expect(
-        JSON.parse(last_response.body)['data'].count
-      ).to eq(5)
-    end
+    expect(
+      JSON.parse(last_response.body)['data'].count
+    ).to eq(5)
   end
 end

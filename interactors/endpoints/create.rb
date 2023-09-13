@@ -4,6 +4,8 @@ module Ditto
       class Create
         include Interactor
 
+        delegate :endpoint_params, :response_params, to: :context
+
         def call
           Database.transaction do
             create_response
@@ -19,12 +21,12 @@ module Ditto
         attr_reader :response, :endpoint
 
         def create_response
-          @response = Ditto::Models::Response.create(context.response_params)
+          @response = Ditto::Models::Response.create(response_params)
         end
 
         def create_endpoint
           @endpoint = Ditto::Models::Endpoint.create(
-            context.endpoint_params.merge(response_id: response.id)
+            endpoint_params.merge(response_id: response.id)
           )
         end
 

@@ -12,6 +12,11 @@ gem 'sqlite3'
 
 gem 'interactor'
 
+# Server
+gem 'thin'
+
+gem 'rake'
+
 # Development and Testing
 gem 'rack-test'
 gem 'rspec'

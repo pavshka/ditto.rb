@@ -27,22 +27,33 @@ module Ditto
           body serialized(result.endpoint, Serializers::Endpoint)
           status 201
         else
-          body serialized(result.error, Serializers::Error)
+          body serialized(result.error, Serializers::Error, { is_collection: true })
           status 422
         end
       end
 
       patch '/endpoints/:id' do
-        status 200
+        result = Interactors::Endpoints::Update.call(
+          endpoint_params:,
+          response_params:
+        )
+
+        if result.success?
+          body serialized(result.endpoint, Serializers::Endpoint)
+          status 201
+        else
+          body serialized(result.error, Serializers::Error, { is_collection: true })
+          status 422
+        end
       end
 
       delete '/endpoints/:id' do
-        endpoint = Models::Endpoint.find(id: params[:id])
+        result = Interactors::Endpoints::Delete.call(id: params[:id])
 
-        if endpoint
-          endpoint.delete
+        if result.success?
           status 204
         else
+          body serialized(result.error, Serializers::Error, { is_collection: true })
           status 404
         end
       end

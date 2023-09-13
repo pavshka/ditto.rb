@@ -3,6 +3,8 @@ module Ditto
     class Error
       include JSONAPI::Serializer
 
+      set_type :errors
+
       attributes :code, :detail
     end
   end

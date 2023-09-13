@@ -4,7 +4,7 @@ It is implemented using JSON:API
 
 ## How to run
 `bundle install`  
-`tasks/db/migrate`  
+`rake db:migrate`  
 `thin -R config.ru start`  
 
 ## Project structure
@@ -14,16 +14,13 @@ It is implemented using JSON:API
 - `models` - sequel models
 - `serializers` - JSON:API serializers
 - `spec` - rspec
-- `tasks` - scripts to perform tasks
 - `ditto.rb` - the main entry point with all the dependencies
+- `Rakefile` - has all the rake tasks defined
 
 ## TODO
-- update and delete interactors
+- add proper errors and serialization
 - model validations
-- docker image
 - proper documentation
 - fix serializing issue (Response)
-- add proper errors and serialization
-- start using rake for tasks
-- implement schema dump task
+- docker image
 - JWT authentication and rake task to generate tokens
