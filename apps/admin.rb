@@ -34,6 +34,7 @@ module Ditto
 
       patch '/endpoints/:id' do
         result = Interactors::Endpoints::Update.call(
+          id: params[:id],
           endpoint_params:,
           response_params:
         )
@@ -81,9 +82,10 @@ module Ditto
         attributes_params.slice(:id, :verb, :path)
       end
 
+      # TODO: Fix this headers hack
       def response_params
         response_params = attributes_params[:response]&.slice(:code, :headers, :body)
-        response_params[:headers] = response_params[:headers].to_s if response_params[:headers]
+        response_params[:headers] = response_params[:headers].to_json if response_params[:headers]
         response_params
       end
     end
