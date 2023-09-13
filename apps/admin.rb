@@ -68,8 +68,12 @@ module Ditto
         serializer.new(resource, options).serializable_hash.to_json
       end
 
+      def json_body
+        @json_body ||= JSON.parse(request.body.read, symbolize_names: true)
+      end
+
       def attributes_params
-        params[:data][:attributes]
+        json_body[:data][:attributes]
       end
 
       # Strong params-like methods
@@ -78,7 +82,9 @@ module Ditto
       end
 
       def response_params
-        attributes_params[:response]&.slice(:code, :headers, :body)
+        response_params = attributes_params[:response]&.slice(:code, :headers, :body)
+        response_params[:headers] = response_params[:headers].to_s if response_params[:headers]
+        response_params
       end
     end
   end
