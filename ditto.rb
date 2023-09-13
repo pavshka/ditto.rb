@@ -8,11 +8,14 @@ Bundler.require
 require_relative 'db/config'
 Database = Ditto::DB::Config.new.connection
 
+require_relative 'lib/error'
+
 require_relative 'models/response'
 require_relative 'models/endpoint'
 
 require_relative 'serializers/endpoint'
 require_relative 'serializers/response'
+require_relative 'serializers/error'
 
 require_relative 'interactors/endpoints/index'
 require_relative 'interactors/endpoints/create'

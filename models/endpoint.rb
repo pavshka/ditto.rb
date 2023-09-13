@@ -5,7 +5,11 @@ module Ditto
 
       one_to_one :response
 
-      def validate; end
+      def validate
+        super
+        validates_presence %i[verb path]
+        validates_unique %i[verb path]
+      end
     end
   end
 end

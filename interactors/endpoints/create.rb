@@ -14,6 +14,8 @@ module Ditto
           end
 
           context.endpoint = endpoint
+        rescue Sequel::ValidationFailed => e
+          context.fail!(errors: [Ditto::Error.new(422, e.errors.full_messages)])
         end
 
         private

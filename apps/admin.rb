@@ -27,7 +27,7 @@ module Ditto
           body serialized(result.endpoint, Serializers::Endpoint)
           status 201
         else
-          body serialized(result.error, Serializers::Error, { is_collection: true })
+          body serialized(result.errors, Serializers::Error, { is_collection: true })
           status 422
         end
       end
@@ -43,7 +43,7 @@ module Ditto
           body serialized(result.endpoint, Serializers::Endpoint)
           status 201
         else
-          body serialized(result.error, Serializers::Error, { is_collection: true })
+          body serialized(result.errors, Serializers::Error, { is_collection: true })
           status 422
         end
       end
@@ -54,7 +54,7 @@ module Ditto
         if result.success?
           status 204
         else
-          body serialized(result.error, Serializers::Error, { is_collection: true })
+          body serialized(result.errors, Serializers::Error, { is_collection: true })
           status 404
         end
       end
