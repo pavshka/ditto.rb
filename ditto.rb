@@ -19,6 +19,7 @@ require_relative 'serializers/error'
 
 require_relative 'interactors/endpoints/index'
 require_relative 'interactors/endpoints/create'
+require_relative 'interactors/endpoints/update'
 require_relative 'interactors/endpoints/delete'
 
 require_relative 'apps/admin'

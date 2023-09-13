@@ -15,6 +15,8 @@ module Ditto
             update_endpoint(endpoint_params, endpoint) if endpoint_params
             update_response(response_params, endpoint.response) if response_params
           end
+
+          context.endpoint = endpoint
         end
 
         private
